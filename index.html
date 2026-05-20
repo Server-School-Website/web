@@ -2,52 +2,66 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Willkommen</title>
+    <title>Privates Surfen</title>
     <style>
-        /* Modernes Design */
+        /* Modernes, dunkles Blau-Design */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0078d4, #004a80);
-            height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+            background: radial-gradient(circle, #001f3f, #000b1a);
+            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0;
-            color: white;
+            height: 100vh;
+            color: #fff;
         }
 
         .card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            height: 85%;
+            box-shadow: 0 8px 32px 0 rgba(0, 120, 212, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
-            color: #333;
-            width: 300px;
+            display: flex;
+            flex-direction: column;
         }
 
         input {
-            width: 80%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 2px solid #ddd;
-            border-radius: 8px;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            width: 60%;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
         }
 
         button {
-            background-color: #0078d4;
+            background: #0078d4;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
+            padding: 12px 25px;
+            border-radius: 10px;
             cursor: pointer;
             font-weight: bold;
             transition: 0.3s;
         }
 
-        button:hover {
-            background-color: #005a9e;
+        button:hover { background: #00a1ff; }
+
+        .logout-btn { background: #ff4d4d; margin-bottom: 10px; align-self: flex-start; }
+        .logout-btn:hover { background: #ff1a1a; }
+
+        iframe {
+            width: 100%;
+            flex-grow: 1;
+            border: none;
+            border-radius: 15px;
+            background: white;
         }
 
         #content { display: none; }
@@ -55,31 +69,36 @@
 </head>
 <body>
 
+    <!-- Login Bereich -->
     <div class="card" id="login-box">
-        <h2>Zugriff gesichert</h2>
-        <p>Bitte Passwort eingeben:</p>
+        <h2>🔒 Zugriff gesichert</h2>
+        <p>Bitte Passwort eingeben, um fortzufahren:</p>
         <input type="password" id="password" placeholder="Passwort...">
         <br>
         <button onclick="checkPassword()">Anmelden</button>
     </div>
 
+    <!-- Inhalt Bereich -->
     <div class="card" id="content">
-        <h1>Erfolgreich!</h1>
-        <p>Willkommen in deinem privaten Bereich.</p>
+        <button class="logout-btn" onclick="logout()">Ausloggen</button>
+        <iframe src="https://duckduckgo.com" title="Browser"></iframe>
     </div>
 
     <script>
-        // Kleiner Tipp: Um es etwas schwerer zu machen, das Passwort zu finden, 
-        // nutze ein einfaches Encoding (keine echte Sicherheit, aber besser als Klartext!)
         function checkPassword() {
             var pass = document.getElementById("password").value;
-            // Das Passwort "admin" verschlüsselt
+            // Passwort: "Geheim123" (als Base64 codiert)
             if (btoa(pass) === "R2VoZWltMTIz") {
-                document.getElementById("content").style.display = "block";
+                document.getElementById("content").style.display = "flex";
                 document.getElementById("login-box").style.display = "none";
             } else {
-                alert("Zugriff verweigert!");
+                alert("Falsches Passwort!");
             }
+        }
+
+        function logout() {
+            // Seite neu laden, um alle Daten im Speicher zu löschen
+            window.location.reload(); 
         }
     </script>
 </body>
