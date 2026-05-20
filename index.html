@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meine geschützte Website</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+        #content { display: none; }
+        #login-box { margin-top: 20px; }
+        input { padding: 10px; }
+        button { padding: 10px 20px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <!-- Login Bereich -->
+    <div id="login-box">
+        <h2>Zugang erforderlich</h2>
+        <input type="password" id="password" placeholder="Passwort eingeben">
+        <button onclick="checkPassword()">Anmelden</button>
+    </div>
+
+    <!-- Geschützter Inhalt -->
+    <div id="content">
+        <h1>Willkommen auf meiner privaten Seite!</h1>
+        <p>Hier stehen Informationen, die nicht jeder sehen darf.</p>
+    </div>
+
+    <script>
+        function checkPassword() {
+            // Hier dein Passwort eintragen
+            var pass = document.getElementById("password").value;
+            if (pass === "admin") {
+                document.getElementById("content").style.display = "block";
+                document.getElementById("login-box").style.display = "none";
+            } else {
+                alert("Falsches Passwort! Versuch es noch einmal.");
+            }
+        }
+    </script>
+
+</body>
+</html>
