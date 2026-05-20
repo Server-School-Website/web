@@ -73,7 +73,7 @@
         // nutze ein einfaches Encoding (keine echte Sicherheit, aber besser als Klartext!)
         function checkPassword() {
             var pass = document.getElementById("password").value;
-            // Das Passwort "Geheim123" verschlüsselt
+            // Das Passwort "admin" verschlüsselt
             if (btoa(pass) === "R2VoZWltMTIz") {
                 document.getElementById("content").style.display = "block";
                 document.getElementById("login-box").style.display = "none";
