@@ -3,42 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meine geschützte Website</title>
+    <title>Willkommen</title>
     <style>
-        body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+        /* Modernes Design */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0078d4, #004a80);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            color: white;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            color: #333;
+            width: 300px;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        button {
+            background-color: #0078d4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #005a9e;
+        }
+
         #content { display: none; }
-        #login-box { margin-top: 20px; }
-        input { padding: 10px; }
-        button { padding: 10px 20px; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <!-- Login Bereich -->
-    <div id="login-box">
-        <h2>Zugang erforderlich</h2>
-        <input type="password" id="password" placeholder="Passwort eingeben">
+    <div class="card" id="login-box">
+        <h2>Zugriff gesichert</h2>
+        <p>Bitte Passwort eingeben:</p>
+        <input type="password" id="password" placeholder="Passwort...">
+        <br>
         <button onclick="checkPassword()">Anmelden</button>
     </div>
 
-    <!-- Geschützter Inhalt -->
-    <div id="content">
-        <h1>Willkommen auf meiner privaten Seite!</h1>
-        <p>Hier stehen Informationen, die nicht jeder sehen darf.</p>
+    <div class="card" id="content">
+        <h1>Erfolgreich!</h1>
+        <p>Willkommen in deinem privaten Bereich.</p>
     </div>
 
     <script>
+        // Kleiner Tipp: Um es etwas schwerer zu machen, das Passwort zu finden, 
+        // nutze ein einfaches Encoding (keine echte Sicherheit, aber besser als Klartext!)
         function checkPassword() {
-            // Hier dein Passwort eintragen
             var pass = document.getElementById("password").value;
-            if (pass === "admin") {
+            // Das Passwort "Geheim123" verschlüsselt
+            if (btoa(pass) === "R2VoZWltMTIz") {
                 document.getElementById("content").style.display = "block";
                 document.getElementById("login-box").style.display = "none";
             } else {
-                alert("Falsches Passwort! Versuch es noch einmal.");
+                alert("Zugriff verweigert!");
             }
         }
     </script>
-
 </body>
 </html>
