@@ -2,9 +2,8 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Privates Surfen</title>
+    <title>Sicherer Bereich</title>
     <style>
-        /* Modernes, dunkles Blau-Design */
         body {
             font-family: 'Segoe UI', sans-serif;
             background: radial-gradient(circle, #001f3f, #000b1a);
@@ -16,17 +15,31 @@
             color: #fff;
         }
 
+        /* Haupt-Container für alles */
         .card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             padding: 30px;
             border-radius: 20px;
-            width: 90%;
-            height: 85%;
-            box-shadow: 0 8px 32px 0 rgba(0, 120, 212, 0.37);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(0, 120, 212, 0.37);
+        }
+
+        /* Speziell für die zentrierte Login-Box */
+        #login-box {
             display: flex;
+            flex-direction: column;
+            align-items: center; /* Zentriert alles horizontal */
+            justify-content: center; /* Zentriert alles vertikal */
+            width: 300px;
+            text-align: center;
+        }
+
+        /* Der Inhalts-Bereich, wenn eingeloggt */
+        #content {
+            display: none;
+            width: 95%;
+            height: 90%;
             flex-direction: column;
         }
 
@@ -34,10 +47,11 @@
             padding: 12px;
             border-radius: 10px;
             border: none;
-            width: 60%;
-            margin-bottom: 15px;
+            width: 80%;
             background: rgba(255, 255, 255, 0.1);
             color: white;
+            margin-bottom: 15px;
+            text-align: center;
         }
 
         button {
@@ -53,8 +67,7 @@
 
         button:hover { background: #00a1ff; }
 
-        .logout-btn { background: #ff4d4d; margin-bottom: 10px; align-self: flex-start; }
-        .logout-btn:hover { background: #ff1a1a; }
+        .logout-btn { background: #ff4d4d; width: 120px; margin-bottom: 15px; align-self: flex-start; }
 
         iframe {
             width: 100%;
@@ -63,31 +76,28 @@
             border-radius: 15px;
             background: white;
         }
-
-        #content { display: none; }
     </style>
 </head>
 <body>
 
-    <!-- Login Bereich -->
+    <!-- Login-Box in der Mitte -->
     <div class="card" id="login-box">
         <h2>🔒 Zugriff gesichert</h2>
-        <p>Bitte Passwort eingeben, um fortzufahren:</p>
+        <p>Bitte Passwort eingeben:</p>
         <input type="password" id="password" placeholder="Passwort...">
-        <br>
         <button onclick="checkPassword()">Anmelden</button>
     </div>
 
     <!-- Inhalt Bereich -->
     <div class="card" id="content">
         <button class="logout-btn" onclick="logout()">Ausloggen</button>
-        <iframe src="https://duckduckgo.com" title="Browser"></iframe>
+        <iframe src="https://search.brave.com" title="Browser"></iframe>
     </div>
 
     <script>
         function checkPassword() {
             var pass = document.getElementById("password").value;
-            // Passwort: "Geheim123" (als Base64 codiert)
+            // Passwort: "Geheim123"
             if (btoa(pass) === "R2VoZWltMTIz") {
                 document.getElementById("content").style.display = "flex";
                 document.getElementById("login-box").style.display = "none";
@@ -97,7 +107,6 @@
         }
 
         function logout() {
-            // Seite neu laden, um alle Daten im Speicher zu löschen
             window.location.reload(); 
         }
     </script>
